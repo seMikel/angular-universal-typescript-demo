@@ -150,5 +150,8 @@
       }
     }
   },
-  "defaultProject": "angular-universal-template"
+  "defaultProject": "angular-universal-template",
+  "cli": {
+    "defaultCollection": "@nativescript/schematics"
+  }
 }
