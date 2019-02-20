@@ -1,0 +1,29 @@
+<div class="main">
+    <nav>
+        <mat-toolbar color="primary">
+            <mat-toolbar-row>
+                <div fxLayout="row" fxLayoutAlign="space-between center" class="toolbar">
+                    <span>Universal Demo</span>
+                    <div fxLayout="row" fxLayoutAlign="space-around center">
+                        <a routerLink="/about" routerLinkActive="active" fxFlexOffset="15px">About</a>
+                        <a routerLink="/products" routerLinkActive="active" fxFlexOffset="15px">Products</a>
+                        <a routerLink="/contacts" routerLinkActive="active" fxFlexOffset="15px">Contacts</a>
+                        <a fxFlexOffset="30px">Log In</a>
+                    </div>
+                </div>
+            </mat-toolbar-row>
+        </mat-toolbar>
+    </nav>
+    <div>
+        <router-outlet></router-outlet>
+    </div>
+    <footer class="footer">
+        <mat-toolbar color="primary">
+            <mat-toolbar-row>
+                <div fxLayout="row" class="toolbar" fxLayoutAlign="end center">
+                    <span>I don't know what this footer is for</span>
+                </div>
+            </mat-toolbar-row>
+        </mat-toolbar>
+    </footer>
+</div>

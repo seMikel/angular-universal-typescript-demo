@@ -1,0 +1,20 @@
+<div class="contacts">
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutAlign="start start">
+        <mat-form-field appearance="outline">
+            <mat-label>From</mat-label>
+            <input matInput placeholder="From" formControlName="from" required>
+            <mat-error *ngIf="contactForm.controls['from'].invalid">Please identify yourself</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Title</mat-label>
+            <input matInput placeholder="Title" formControlName="title" required>
+            <mat-error *ngIf="contactForm.controls['title'].invalid">Please specify a topic</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="message">
+            <mat-label>Message</mat-label>
+            <textarea cdkTextareaAutosize cdkAutosizeMaxRows="10" matInput placeholder="Message" formControlName="message" required></textarea>
+            <mat-error *ngIf="contactForm.controls['message'].invalid">Please enter a message</mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" [disabled]="!contactForm.valid">Send</button>
+    </form>
+</div>

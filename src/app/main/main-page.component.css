@@ -1,0 +1,23 @@
+.main {
+    min-height: 100%;
+}
+
+.toolbar {
+    width: 100%;
+}
+
+.footer {
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a.active {
+    color: #4295f4;
+    text-decoration: underline;
+}
