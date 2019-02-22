@@ -1,0 +1,9 @@
+.product {
+    width: 90%;
+    height: 90%;
+    box-sizing: border-box;
+}
+
+.product .actions {
+    width: 100%;
+}

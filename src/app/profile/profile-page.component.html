@@ -1,0 +1,26 @@
+<div *ngIf="user" class="profile" fxLayout="column" fxLayoutAlign="start start">
+    <div>
+        <form [formGroup]="userForm" (ngSubmit)="updateUser()" fxLayout="row" fxLayoutAlign="start center">
+            <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Name" formControlName="name" required>
+                <mat-error *ngIf="userForm.controls['name'].invalid">Username cannot be blank</mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>E-mail</mat-label>
+                <input matInput placeholder="E-mail" formControlName="email" required>
+                <mat-error *ngIf="userForm.controls['email'].invalid">Invalid email</mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="primary" [disabled]="!userForm.valid" (click)="updateUser()">Update</button>
+        </form>
+    </div>
+    <div>
+        <mat-list>
+            <h3 mat-subheader>Cart</h3>
+            <mat-list-item *ngFor="let purchase of user.purchases">
+                <h4 mat-line>{{purchase.product.name}} x{{purchase.amount}} - {{purchase.product.price * purchase.amount}}</h4>
+            </mat-list-item>
+        </mat-list>
+    </div>
+    <button mat-raised-button color="primary" [disabled]="!user.purchases.length" (click)="makePurchase()">Purchase</button>
+</div>
