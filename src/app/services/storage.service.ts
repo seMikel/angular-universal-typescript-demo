@@ -1,18 +1,20 @@
-import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Injectable } from '@angular/core';
+import { PlatformService } from './platform.service';
 
 @Injectable()
 export class StorageService {
 
-    constructor(@Inject(PLATFORM_ID) private platformId: any) { }
+    constructor(private platform: PlatformService) { }
 
     public setString(key: string, value: string) {
+        if (this.platform.isServer) { return; }
+
         localStorage.setItem(key, value);
     }
 
     public getString(key: string): string {
-        if (isPlatformBrowser(this.platformId)) {
-            return localStorage.getItem(key);
-        }
+        if (this.platform.isServer) { return; }
+
+        return localStorage.getItem(key);
     }
 }

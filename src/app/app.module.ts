@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -28,6 +28,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list';
 import { ProfilePageComponent } from './profile/profile-page.component';
 import { UserService } from './services/user.service';
+import { PlatformService } from './services/platform.service';
 
 @NgModule({
     declarations: [
@@ -54,13 +55,15 @@ import { UserService } from './services/user.service';
         MatGridListModule,
         MatCardModule,
         MatDialogModule,
-        MatListModule
+        MatListModule,
+        BrowserTransferStateModule
     ],
     providers: [
         ProductsService,
         StorageService,
         AuthService,
         UserService,
+        PlatformService,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,
