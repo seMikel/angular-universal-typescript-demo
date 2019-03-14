@@ -1,20 +1,5 @@
-import { Injectable } from '@angular/core';
-import { PlatformService } from './platform.service';
+export abstract class StorageService {
 
-@Injectable()
-export class StorageService {
-
-    constructor(private platform: PlatformService) { }
-
-    public setString(key: string, value: string) {
-        if (this.platform.isServer) { return; }
-
-        localStorage.setItem(key, value);
-    }
-
-    public getString(key: string): string {
-        if (this.platform.isServer) { return; }
-
-        return localStorage.getItem(key);
-    }
+    public abstract setString(key: string, value: string);
+    public abstract getString(key: string): string;
 }

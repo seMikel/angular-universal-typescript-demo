@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../interfaces/user.interface';
 import { tap } from 'rxjs/operators';
 import { Purchase } from '../interfaces/purchase.interface';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class UserService {
@@ -13,19 +14,19 @@ export class UserService {
     constructor(private http: HttpClient) { }
 
     public getUserData(): Observable<User> {
-        return this.http.get<User>('http://localhost:3000/users/user').pipe(
+        return this.http.get<User>(`${environment.apiBaseURL}/users/user`).pipe(
             tap(user => this.user.next(user))
         );
     }
 
     public setUserData(data: Partial<User>): Observable<User> {
-        return this.http.put<User>('http://localhost:3000/users/user', data).pipe(
+        return this.http.put<User>(`${environment.apiBaseURL}/users/user`, data).pipe(
             tap(user => this.user.next(user))
         );
     }
 
     public setUserPurchases(purchases: Purchase[]): Observable<User> {
-        return this.http.put<User>('http://localhost:3000/users/purchases', purchases).pipe(
+        return this.http.put<User>(`${environment.apiBaseURL}/users/purchases`, purchases).pipe(
             tap(user => this.user.next(user))
         );
     }

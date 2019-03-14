@@ -23,12 +23,15 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { StorageService } from './services/storage.service';
-import { LoginDialogComponent } from './main/login-dialog/login-dialog.component';
+import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list';
 import { ProfilePageComponent } from './profile/profile-page.component';
 import { UserService } from './services/user.service';
 import { PlatformService } from './services/platform.service';
+import { WebStorageService } from './services/web-storage.service';
+import { NotificationService } from './services/notification.service';
+import { WebNotificationService } from './services/web-notification.service';
 
 @NgModule({
     declarations: [
@@ -60,10 +63,17 @@ import { PlatformService } from './services/platform.service';
     ],
     providers: [
         ProductsService,
-        StorageService,
         AuthService,
         UserService,
         PlatformService,
+        {
+            provide: StorageService,
+            useClass: WebStorageService,
+        },
+        {
+            provide: NotificationService,
+            useClass: WebNotificationService,
+        },
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,

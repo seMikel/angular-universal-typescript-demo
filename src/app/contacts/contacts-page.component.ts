@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
     selector: 'app-contacts-page',
@@ -14,13 +14,13 @@ export class ContactsPageComponent {
         message: new FormControl('', Validators.required)
     });
 
-    constructor(private snackBar: MatSnackBar) { }
+    constructor(private notifications: NotificationService) { }
 
     onSubmit() {
-        this.snackBar.open(
+        this.notifications.notify(
             `Thank you for your input, ${this.contactForm.value.from}! Your message about "${this.contactForm.value.title}" has been sent.`,
             'OK',
-            { duration: 5000, }
+            5000
         );
     }
 }

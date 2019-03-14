@@ -1,0 +1,3 @@
+<ActionBar [title]="title">
+    <ActionItem *ngIf="user" [text]="user.name" ios.position="right" [nsRouterLink]="['/profile']"></ActionItem>
+</ActionBar>

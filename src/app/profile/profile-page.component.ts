@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { User } from '../interfaces/user.interface';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { skipWhile } from 'rxjs/operators';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
     selector: 'app-profile-page',
@@ -18,7 +18,7 @@ export class ProfilePageComponent {
         email: new FormControl('', [Validators.required, Validators.email])
     });
 
-    constructor(private userService: UserService, private snackBar: MatSnackBar) {
+    constructor(private userService: UserService, private notifications: NotificationService) {
         userService.user.pipe(
             skipWhile(user => !user)
         ).subscribe(user => {
@@ -28,18 +28,18 @@ export class ProfilePageComponent {
     }
 
     public updateUser() {
-        this.userService.setUserData(this.userForm.value).subscribe(user => this.snackBar.open(
+        this.userService.setUserData(this.userForm.value).subscribe(user => this.notifications.notify(
             `User data has been updated`,
             'OK',
-            { duration: 2000, }
+            2000
         ));
     }
 
     public makePurchase() {
-        this.userService.setUserPurchases([]).subscribe(user => this.snackBar.open(
+        this.userService.setUserPurchases([]).subscribe(user => this.notifications.notify(
             `Thank you for your purchase`,
             'OK',
-            { duration: 2000, }
+            2000
         ));
     }
 }

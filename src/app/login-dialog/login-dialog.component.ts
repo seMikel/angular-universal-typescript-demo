@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
     selector: 'app-login-dialog',

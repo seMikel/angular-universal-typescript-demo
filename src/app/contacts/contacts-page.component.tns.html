@@ -1,1 +1,11 @@
-<Button text="auto-generated works!" class="btn btn-primary"></Button>
+<app-action-bar title="Contacts"></app-action-bar>
+<GridLayout>
+    <ScrollView>
+        <StackLayout>
+            <TextField (textChange)="contactForm.controls['from'].setValue($event.object.text)" hint="From"></TextField>
+            <TextField (textChange)="contactForm.controls['title'].setValue($event.object.text)" hint="Title"></TextField>
+            <TextField (textChange)="contactForm.controls['message'].setValue($event.object.text)" hint="Message"></TextField>
+            <Button text="Send" (tap)="onSubmit()"></Button>
+        </StackLayout>
+    </ScrollView>
+</GridLayout>

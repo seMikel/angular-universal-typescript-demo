@@ -1,1 +1,17 @@
-<Button text="auto-generated works!" class="btn btn-primary"></Button>
+<GridLayout rows="*" height="100%">
+    <RadSideDrawer>
+        <StackLayout tkDrawerContent backgroundColor="gray">
+            <StackLayout height="56" style="text-align: center; vertical-align: center;">
+                <Label text="Navigation Menu"></Label>
+            </StackLayout>
+            <StackLayout>
+                <Label text="About" padding="10" [nsRouterLink]="['/about']" nsRouterLinkActive="current-route" (tap)="closeDrawer()"></Label>
+                <Label text="Products" padding="10" [nsRouterLink]="['/products']" nsRouterLinkActive="current-route" (tap)="closeDrawer()"></Label>
+                <Label text="Contacts" padding="10" [nsRouterLink]="['/contacts']" nsRouterLinkActive="current-route" (tap)="closeDrawer()"></Label>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout tkMainContent>
+            <page-router-outlet></page-router-outlet>
+        </StackLayout>
+    </RadSideDrawer>
+</GridLayout>

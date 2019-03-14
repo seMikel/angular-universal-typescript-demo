@@ -3,11 +3,11 @@ import { ProductsService } from '../services/products.service';
 import { Product } from '../interfaces/product.interface';
 import { UserService } from '../services/user.service';
 import { User } from '../interfaces/user.interface';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { TransferState, makeStateKey } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
+import { NotificationService } from '../services/notification.service';
+import { StateService } from '../services/state.service';
 
-const PRODUCTS_STATE_KEY = makeStateKey<Product[]>('products');
+const PRODUCTS_STATE_KEY = 'products';
 
 @Component({
     selector: 'app-products-page',
@@ -23,17 +23,10 @@ export class ProductsPageComponent implements OnDestroy {
     constructor(
         productService: ProductsService,
         private userService: UserService,
-        private snackBar: MatSnackBar,
-        private state: TransferState
+        private notifications: NotificationService,
+        state: StateService
     ) {
-        if (this.state.hasKey(PRODUCTS_STATE_KEY)) {
-            this.products = this.state.get<Product[]>(PRODUCTS_STATE_KEY, []);
-        } else {
-            productService.getProductList().subscribe(products => {
-                this.products = products;
-                this.state.set(PRODUCTS_STATE_KEY, this.products);
-            });
-        }
+        state.get(PRODUCTS_STATE_KEY, productService.getProductList()).subscribe(products => this.products = products);
         this.userSub = userService.user.subscribe(user => this.user = user);
     }
 
@@ -48,10 +41,10 @@ export class ProductsPageComponent implements OnDestroy {
         } else {
             this.user.purchases.push({ product, amount: 1 });
         }
-        this.userService.setUserPurchases(this.user.purchases).subscribe(user => this.snackBar.open(
+        this.userService.setUserPurchases(this.user.purchases).subscribe(user => this.notifications.notify(
             `${product.name} added to cart`,
             'OK',
-            { duration: 1000, }
+            1000
         ));
     }
 }

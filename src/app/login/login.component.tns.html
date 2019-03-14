@@ -1,0 +1,12 @@
+<ActionBar title="Sign In" class="action-bar">
+</ActionBar>
+
+<GridLayout>
+    <ScrollView>
+        <StackLayout>
+            <TextField [(ngModel)]="name" hint="Enter username"></TextField>
+            <TextField [(ngModel)]="password" [secure]="true" hint="Enter password"></TextField>
+            <Button text="Sign In" (tap)="login()"></Button>
+        </StackLayout>
+    </ScrollView>
+</GridLayout>

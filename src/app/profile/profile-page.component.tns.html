@@ -1,1 +1,13 @@
-<Button text="auto-generated works!" class="btn btn-primary"></Button>
+<app-action-bar title="Profile"></app-action-bar>
+<GridLayout>
+    <ScrollView>
+        <StackLayout>
+            <TextField (textChange)="userForm.controls['name'].setValue($event.object.text)" [text]="userForm.controls['name'].value" hint="Name"></TextField>
+            <TextField (textChange)="userForm.controls['email'].setValue($event.object.text)" [text]="userForm.controls['email'].value" hint="Email" keyboardType="email"></TextField>
+            <Button text="Update" (tap)="updateUser()"></Button>
+            <Label text="Cart" class="h3"></Label>
+            <Label *ngFor="let purchase of user.purchases" [text]="purchase.product.name + ' x' + purchase.amount + ' - ' + purchase.product.price * purchase.amount"></Label>
+            <Button text="Purchase" (tap)="makePurchase()"></Button>
+        </StackLayout>
+    </ScrollView>
+</GridLayout>

@@ -1,1 +1,14 @@
-<Button text="auto-generated works!" class="btn btn-primary"></Button>
+<app-action-bar title="Products"></app-action-bar>
+<ListView [items]="products" style="height:100%">
+    <ng-template let-product="item">
+        <FlexboxLayout flexDirection="column">
+            <Label [text]="product.name" class="h3"></Label>
+            <Label [text]="product.description"></Label>
+            <FlexboxLayout flexDirection="row">
+                <Label text="Price: "></Label>
+                <Label [text]="product.price"></Label>
+            </FlexboxLayout>
+            <Button text="Buy" (tap)="addToCart(product)"></Button>
+        </FlexboxLayout>
+    </ng-template>
+</ListView>

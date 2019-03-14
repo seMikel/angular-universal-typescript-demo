@@ -1,5 +1,5 @@
-import { Component, Inject, Optional } from '@angular/core';
-import { APP_BASE_HREF } from '@angular/common';
+import { Component } from '@angular/core';
+import { AuthService } from './services/auth.service';
 
 @Component({
     selector: 'app-root',
@@ -8,9 +8,7 @@ import { APP_BASE_HREF } from '@angular/common';
 })
 export class AppComponent {
 
-    constructor(
-        @Optional() @Inject(APP_BASE_HREF) origin: string
-    ) {
-        console.log('App launched with origin: ' + origin);
+    constructor(auth: AuthService) {
+        auth.logout();
     }
 }

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { User } from '../interfaces/user.interface';
 import { MatDialog } from '@angular/material/dialog';
-import { LoginDialogComponent } from './login-dialog/login-dialog.component';
+import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
 import { UserService } from '../services/user.service';
 import { PlatformService } from '../services/platform.service';
 
@@ -18,8 +18,8 @@ export class MainPageComponent {
     constructor(
         auth: AuthService,
         userService: UserService,
+        platform: PlatformService,
         private dialog: MatDialog,
-        platform: PlatformService
     ) {
         if (platform.isBrowser) {
             userService.user.subscribe(user => this.user = user);
